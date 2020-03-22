@@ -29,7 +29,7 @@ public interface UserDao {
     public User findOne(String username);
 
     //修改用户信息
-    @Update("update users set stu=#{stu},name=#{name},grade=#{grade},magor=#{magor},department=#{department} where username=#{username}")
+    @Update("update users set stu=#{stu},name=#{name},grade=#{grade},magor=#{magor},department=#{department},headPortrait=#{headPortrait} where username=#{username}")
     public void updateUser(User user);
 
     //修改密码信息

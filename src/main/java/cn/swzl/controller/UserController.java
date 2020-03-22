@@ -1,6 +1,7 @@
 package cn.swzl.controller;
 
 import cn.swzl.domain.User;
+import cn.swzl.service.InforService;
 import cn.swzl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private InforService inforService;
 
     @RequestMapping("/findAll")
     public String findAll(Model model){
@@ -118,13 +121,46 @@ public class UserController {
     }
 
     @RequestMapping("/update")
-    public String update(User user , HttpSession session){
-        /*if(userService.findOne(user.getUsername()).getPassword()!=user.getPassword()){
-            session.setAttribute("error", "原密码错误,修改失败");
-            return "redirect:/jsp/reg.jsp";
-        }*/
+    public String update(User user , HttpSession session,HttpServletRequest request, MultipartFile upload){
+
         System.out.println("controller:修改用户信息");
+        // 使用fileupload组件完成文件上传
+        // 上传的位置
+        String path = request.getSession().getServletContext().getRealPath("/uploads/");
+        // 判断，该路径是否存在
+        File file = new File(path);
+        if(!file.exists()){
+            // 创建该文件夹
+            file.mkdirs();
+        }
+        String filename;
+        User user1 = (User) session.getAttribute("user");
+        try {
+            // 说明上传文件项
+            // 获取上传文件的名称
+            if(!upload.getOriginalFilename().isEmpty()){
+                //如果不是默认头像就要删除原头像图片
+                if (!"1.jpg".equals(user1.getHeadPortrait())){
+                    File file1=new File(path,user1.getHeadPortrait());
+                    file1.delete();
+                }
+                filename = upload.getOriginalFilename();
+                // 把文件的名称设置唯一值，uuid
+                String uuid = UUID.randomUUID().toString().replace("-", "");
+                filename = uuid+"_"+filename;
+                // 完成文件上传
+                upload.transferTo(new File(path,filename));
+            }else{
+                filename=user1.getHeadPortrait();
+            }
+        } catch (IOException e) {
+            session.setAttribute("error", "头像上传失败!");
+            return "redirect:/jsp/reg.jsp";
+        }
+        user.setHeadPortrait(filename);
+        user.setUsername(user1.getUsername());
         userService.update(user);
+        inforService.updateHeadPortrait(user1.getUsername(),filename);
         session.setAttribute("error", "修改成功");
         session.setAttribute("user",user);
         return "redirect:/jsp/login.jsp";

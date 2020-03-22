@@ -30,4 +30,7 @@ public interface InforService {
 
     //删除用户信息
     public void delete(int id);
+
+    //更新用户头像
+    public void updateHeadPortrait(String username,String headPortrait);
 }

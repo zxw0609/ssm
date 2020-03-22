@@ -70,7 +70,7 @@
                     <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                         <div class="layui-tab-item layui-show">
                             <div class="layui-form layui-form-pane">
-                                <form method="post" action="../User/update">
+                                <form method="post" action="../User/update" enctype="multipart/form-data">
                                     <div class="layui-form-item">
                                         <label for="L_stu" class="layui-form-label">学号</label>
                                         <div class="layui-input-inline">
@@ -106,6 +106,15 @@
                                                    lay-verify="required" value="${user.department}"autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">头像</label>
+                                        <div class="layui-input-inline" style="border: 1px solid #e6e6e6;">
+                                            修改头像
+                                            <input type="file" name="upload" style="position: absolute;overflow: hidden;right: 0;top: 0;opacity: 0;cursor: pointer;">
+                                        </div>
+                                    </div>
+
                                     <div class="layui-form-item">
                                         <button class="layui-btn" lay-filter="*" lay-submit>修改</button>
                                         <span style="padding-left:20px;">

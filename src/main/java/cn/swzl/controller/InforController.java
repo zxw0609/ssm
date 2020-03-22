@@ -122,14 +122,51 @@ public class InforController {
     }
 
     @RequestMapping("/update")
-    public String update(HttpSession session,Infor infor){
+    public String update(HttpSession session,Infor infor,HttpServletRequest request, MultipartFile upload){
         if (session.getAttribute("user")==null||session.getAttribute("user")==""){
             session.setAttribute("error", "请先登录");
             return "redirect:/jsp/login.jsp";
         }
+
+        // 使用fileupload组件完成文件上传
+        // 上传的位置
+        String path = request.getSession().getServletContext().getRealPath("/uploads/");
+        // 判断，该路径是否存在
+        File file = new File(path);
+        if(!file.exists()){
+            // 创建该文件夹
+            file.mkdirs();
+        }
+        String filename;
+        try {
+            // 说明上传文件项
+            // 获取上传文件的名称
+            if(!upload.getOriginalFilename().isEmpty()){
+                filename = upload.getOriginalFilename();
+                // 把文件的名称设置唯一值，uuid
+                String uuid = UUID.randomUUID().toString().replace("-", "");
+                Infor infor1= (Infor) session.getAttribute("infor");
+                infor.setId(infor1.getId());
+                if(!infor1.getImage().isEmpty()){
+                    File file1=new File(path,infor1.getImage());
+                    file1.delete();
+                }
+                filename = uuid+"_"+filename;
+                // 完成文件上传
+                upload.transferTo(new File(path,filename));
+            }else{
+                filename="";
+            }
+            System.out.println(filename);
+            infor.setImage(filename);
+        } catch (IOException e) {
+            session.setAttribute("error", "图片添加/修改失败!");
+            return "redirect:/jsp/update.jsp";
+        }
         System.out.println("controller:更新物品信息");
         inforService.update(infor);
         session.setAttribute("error", "更新成功");
+        session.setAttribute("infor",infor);
         return "redirect:/Infor/userFind";
     }
 

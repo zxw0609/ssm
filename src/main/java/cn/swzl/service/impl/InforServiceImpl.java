@@ -53,4 +53,9 @@ public class InforServiceImpl implements InforService {
         System.out.println("service:删除物品信息");
         inforDao.delete(id);
     }
+
+    public void updateHeadPortrait(String username,String headPortrait){
+        System.out.println("service:更新用户所有物品信息的头像");
+        inforDao.updateHeadPortrait(username,headPortrait);
+    }
 }

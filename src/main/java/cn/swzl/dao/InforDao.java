@@ -1,10 +1,7 @@
 package cn.swzl.dao;
 
 import cn.swzl.domain.Infor;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -58,7 +55,7 @@ public interface InforDao {
      * 更新物品信息
      * @param infor
      */
-    @Update("update infors set tname=#{tname},infor=#{infor},tape=#{tape},locar=#{locar},genre=#{genre} where id=#{id}")
+    @Update("update infors set tname=#{tname},infor=#{infor},tape=#{tape},locar=#{locar},genre=#{genre},image=#{image} where id=#{id}")
     public void update(Infor infor);
 
     /**
@@ -67,4 +64,11 @@ public interface InforDao {
      */
     @Delete("delete from infors where id = #{id}")
     public void delete(int id);
+
+    /**
+     * 用户更改头像时更改所有物品信息中对应的用户头像
+     * @param username
+     */
+    @Update("update infors set headPortrait=#{headPortrait} where username=#{username}")
+    public void updateHeadPortrait(@Param("username") String username, @Param("headPortrait") String headPortrait);
 }
