@@ -15,6 +15,6 @@ public interface LiuYanService {
     //保存留言信息
     public void saveLiuYan(LiuYan liuYan);
 
-    //删除物品对应的留言信息
-    public void delete(int InforId);
+    /*//删除物品对应的留言信息
+    public void delete(int InforId);*/
 }

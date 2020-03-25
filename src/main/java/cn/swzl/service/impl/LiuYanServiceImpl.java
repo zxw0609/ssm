@@ -30,8 +30,8 @@ public class LiuYanServiceImpl implements LiuYanService {
         liuYanDao.saveLiuYan(liuYan);
     }
 
-    public void delete(int InforId) {
+    /*public void delete(int InforId) {
         System.out.println("业务层：删除物品对应的留言信息");
         liuYanDao.delete(InforId);
-    }
+    }*/
 }

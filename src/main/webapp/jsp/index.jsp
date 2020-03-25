@@ -72,7 +72,6 @@
             <c:if test="${not empty inforList}">
                 <c:forEach items="${inforList}" var="Infor">
                     <div class="item">
-
                         <div class="item-box  layer-photos-demo1 layer-photos-demo">
                             <img class="info-img" src="../uploads/${Infor.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
                             <h3><a href="">${Infor.username }</a></h3>
@@ -97,9 +96,8 @@
 </div>
 <div class="footer">
     <p>
-        <span>&copy; 2019</span>
-        <span><a href="http://www.layui.com" target="_blank">layui.com</a></span>
-        <span>MIT license</span>
+        <span>&copy; 2020</span>
+        <span>闲言失物招领平台</span>
     </p>
     <p><span>日行一善</span></p>
 </div>

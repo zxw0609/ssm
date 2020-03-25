@@ -3,7 +3,6 @@ package cn.swzl.controller;
 import cn.swzl.domain.Infor;
 import cn.swzl.domain.User;
 import cn.swzl.service.InforService;
-import cn.swzl.service.LiuYanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +26,8 @@ import java.util.UUID;
 public class InforController {
     @Autowired
     private InforService inforService;
-    @Autowired
-    private LiuYanService liuYanService;
+    /*@Autowired
+    private LiuYanService liuYanService;*/
 
     @RequestMapping("/findAll")
     public String findAll(HttpSession session) {
@@ -178,7 +177,7 @@ public class InforController {
         }
         System.out.println("controller:删除物品信息");
         inforService.delete(id);
-        liuYanService.delete(id);
+        /*liuYanService.delete(id);  设置了级联删除 所以不再需要*/
         session.setAttribute("error", "删除成功");
         return "redirect:/Infor/userFind";
     }

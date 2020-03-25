@@ -11,6 +11,7 @@ public class LiuYan implements Serializable {
     private String liuyan;
     private int id;
     private int InforId;
+    private String headPortrait;
 
     public String getUsername() {
         return username;
@@ -44,6 +45,14 @@ public class LiuYan implements Serializable {
         InforId = inforId;
     }
 
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
     @Override
     public String toString() {
         return "LiuYan{" +
@@ -51,6 +60,7 @@ public class LiuYan implements Serializable {
                 ", liuyan='" + liuyan + '\'' +
                 ", id=" + id +
                 ", InforId=" + InforId +
+                ", headPortrait='" + headPortrait + '\'' +
                 '}';
     }
 }

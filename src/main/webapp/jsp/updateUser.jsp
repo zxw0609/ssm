@@ -27,11 +27,11 @@
                 <img src="../res/static/images/logo-text.png" alt="" class="logo-text">
             </a>
         </h1>
-        <form class="layui-form blog-seach pull-left" action="../Infor/find">
+        <form class="layui-form blog-seach pull-left" method="post" action="../Infor/find">
             <div class="layui-form-item blog-sewrap">
                 <div class="layui-input-block blog-sebox">
                     <i class="layui-icon layui-icon-search"></i>
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                    <input type="text" name="xinxi" lay-verify="title" autocomplete="off"  class="layui-input">
                 </div>
             </div>
         </form>
@@ -132,9 +132,8 @@
 
 <div class="footer">
     <p>
-        <span>&copy; 2019</span>
-        <span><a href="http://www.layui.com" target="_blank">layui.com</a></span>
-        <span>MIT license</span>
+        <span>&copy; 2020</span>
+        <span>闲言失物招领平台</span>
     </p>
     <p><span>日行一善</span></p>
 </div>

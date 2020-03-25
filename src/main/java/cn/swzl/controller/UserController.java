@@ -5,7 +5,6 @@ import cn.swzl.service.InforService;
 import cn.swzl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,14 +26,6 @@ public class UserController {
     private UserService userService;
     @Autowired
     private InforService inforService;
-
-    @RequestMapping("/findAll")
-    public String findAll(Model model){
-        System.out.println("controller:查询所有用户");
-        List<User> userList = userService.findAll();
-        model.addAttribute("userList",userList);
-        return "UserList";
-    }
 
     @RequestMapping("/save")
     public String saveUser(User user ,String repassword, HttpSession session,HttpServletRequest request, MultipartFile upload){
@@ -188,15 +178,4 @@ public class UserController {
         return "redirect:/jsp/login.jsp";
     }
 
-    /**
-     * SpringMVC文件上传
-     * @return
-     */
-    @RequestMapping("/fileupload2")
-    public String fileuoload2(HttpServletRequest request,String filename) throws Exception {
-        String path = request.getSession().getServletContext().getRealPath("/uploads/");
-        File file=new File(path,filename);
-        file.delete();
-        return "UserList";
-    }
 }

@@ -24,11 +24,11 @@
                 <img src="../res/static/images/logo-text.png" alt="" class="logo-text">
             </a>
         </h1>
-        <form class="layui-form blog-seach pull-left" action="">
+        <form class="layui-form blog-seach pull-left" method="post" action="../Infor/find">
             <div class="layui-form-item blog-sewrap">
                 <div class="layui-input-block blog-sebox">
                     <i class="layui-icon layui-icon-search"></i>
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                    <input type="text" name="xinxi" lay-verify="title" autocomplete="off"  class="layui-input">
                 </div>
             </div>
         </form>
@@ -40,8 +40,9 @@
                 <li class="layui-nav-item">
                     <a class="layui-icon layui-icon-username" href="#"></a>
                     <dl class="layui-nav-child" style="z-index: 2000;">
-                        <dd><a href="javascript:;">个人信息</a></dd>
-                        <dd><a href="javascript:;">已发信息</a></dd>
+                        <dd><a href="../Infor/userFind">已发信息</a></dd>
+                        <dd><a href="updateUser.jsp">修改信息</a></dd>
+                        <dd><a href="updatePas.jsp">修改密码</a></dd>
                         <dd><a href="../User/exit">退出登录</a></dd>
                     </dl>
                 </li>
@@ -55,16 +56,19 @@
     </ul>
 </div>
 <div class="container-wrap">
-    <div class="container container-message container-details">
+    <div class="container container-message ">
         <div class="contar-wrap">
             <div class="item">
                 <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                    <img class="info-img" src="../res/static/images/info-img.png" alt="">
+                    <img class="info-img" src="../uploads/${infor.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
                     <h3><a href="details.html">${infor.username }</a></h3>
                     <h5>发布于：<span>${infor.stape }</span></h5>
                     <p>
-                        物品名：${infor.tname}<br>时间：${infor.tape}<br>地点：${infor.locar}<br>类型：${infor.leixing}<br>物品描述： ${infor.infor }
+                        物品名：${infor.tname}<br>时间：${infor.tape}<br>地点：${infor.locar}<br>类型：${infor.genre}<br>物品描述： ${infor.infor }
                     </p>
+                    <c:if test="${not empty infor.image}">
+                        <img src="../uploads/${infor.image}" alt="" style="width:auto;heigth:auto; max-width:300px; max-height:300px;">
+                    </c:if>
                     <!-- <div class="count layui-clear">
                         <span class="pull-left">阅读 <em>100000+</em></span>
                         <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
@@ -74,16 +78,13 @@
             <form class="layui-form layui-form-pane" method="post"
                   action="../LiuYan/saveLiuYan?InforId=${infor.id}">
                 <div class="layui-form-item layui-form-text">
-                    <textarea class="layui-textarea" name="liuyan" style="resize:none" placeholder="说一下情况吧"></textarea>
+                    <textarea class="layui-textarea" name="liuyan" style="resize:none" placeholder="说一下情况吧" lay-verify="required"></textarea>
                 </div>
                 <div class="item-btn">
                     <button class="layui-btn" lay-filter="*" lay-submit>留言</button>
                 </div>
             </form>
-            <%--<a name="comment"> </a>
-            <div class="comt layui-clear">
-                <a href="comment.jsp?id=${ir.id}" class="pull-right">写留言</a>
-            </div>--%>
+
             <div id="LAY-msg-box">
                 <c:if test="${empty liuYanList}">
                     <div class="info-item">
@@ -95,7 +96,7 @@
                 <c:if test="${not empty liuYanList }">
                     <c:forEach items="${liuYanList }" var="ly">
                         <div class="info-item">
-                            <img class="info-img" src="../res/static/images/info-img.png" alt="">
+                            <img class="info-img" src="../uploads/${ly.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
                             <div class="info-text">
                                 <p class="title count">
                                     <span class="name">${ly.username}</span>
@@ -112,9 +113,8 @@
 </div>
 <div class="footer">
     <p>
-        <span>&copy; 2019</span>
-        <span><a href="http://www.layui.com" target="_blank">layui.com</a></span>
-        <span>MIT license</span>
+        <span>&copy; 2020</span>
+        <span>闲言失物招领平台</span>
     </p>
     <p><span>日行一善</span></p>
 </div>

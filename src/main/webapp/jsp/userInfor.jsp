@@ -96,9 +96,8 @@
 </div>
 <div class="footer">
     <p>
-        <span>&copy; 2019</span>
-        <span><a href="http://www.layui.com" target="_blank">layui.com</a></span>
-        <span>MIT license</span>
+        <span>&copy; 2020</span>
+        <span>闲言失物招领平台</span>
     </p>
     <p><span>日行一善</span></p>
 </div>

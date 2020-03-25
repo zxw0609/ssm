@@ -47,6 +47,7 @@ public class LiuYanController {
         User user = (User) session.getAttribute("user");
         liuYan.setUsername(user.getUsername());
         liuYan.setInforId(InforId);
+        liuYan.setHeadPortrait(user.getHeadPortrait());
         liuYanService.saveLiuYan(liuYan);
         return "forward:/LiuYan/find?InforId="+InforId;
     }

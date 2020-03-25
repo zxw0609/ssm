@@ -32,7 +32,7 @@ public interface InforDao {
      * @return
      */
 
-    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi} and act='0'")
+    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi}")
     public List<Infor> find(String xinxi);
 
     /**
