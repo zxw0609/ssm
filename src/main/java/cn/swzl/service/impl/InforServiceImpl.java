@@ -34,6 +34,11 @@ public class InforServiceImpl implements InforService {
         return inforDao.find("%"+xinxi+"%");
     }
 
+    public List<Infor> userInforFind(String xinxi,String username) {
+        System.out.println("service:模糊查询用户相关物品信息");
+        return inforDao.userInforFind("%"+xinxi+"%",username);
+    }
+
     public Infor findOne(int id) {
         System.out.println("service:查询指定id的物品信息");
         return inforDao.findOne(id);

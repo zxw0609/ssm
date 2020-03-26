@@ -32,8 +32,16 @@ public interface InforDao {
      * @return
      */
 
-    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi}")
+    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi} order by stape desc")
     public List<Infor> find(String xinxi);
+
+    /**
+     * 查询用户相关信息
+     * @return
+     */
+
+    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi} and username=#{username} order by stape desc")
+    public List<Infor> userInforFind(@Param("xinxi") String xinxi, @Param("username") String username);
 
     /**
      * 查询单个信息

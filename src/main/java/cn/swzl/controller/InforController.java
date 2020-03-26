@@ -95,6 +95,19 @@ public class InforController {
         return "redirect:/jsp/index.jsp";
     }
 
+    @RequestMapping("/userInforFind")
+    public String userInforFind(String xinxi , HttpSession session){
+        if (session.getAttribute("user")==null||session.getAttribute("user")==""){
+            session.setAttribute("error", "请先登录");
+            return "redirect:/jsp/login.jsp";
+        }
+        System.out.println("controller:模糊查询用户物品信息");
+        User user = (User) session.getAttribute("user");
+        List<Infor> inforList =inforService.userInforFind(xinxi,user.getUsername());
+        session.setAttribute("userInforList",inforList);
+        return "redirect:/jsp/userInfor.jsp";
+    }
+
     @RequestMapping("/findOne")
     public String findOne(int id , HttpSession session){
         if (session.getAttribute("user")==null||session.getAttribute("user")==""){

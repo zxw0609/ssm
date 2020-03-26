@@ -19,6 +19,9 @@ public interface InforService {
     //根据关键字查询物品信息
     public List<Infor> find(String xinxi);
 
+    //用户发布物品模糊查询
+    public List<Infor> userInforFind(String xinxi,String username);
+
     //根据id查询指定物品信息
     public Infor findOne(int id);
 

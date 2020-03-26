@@ -25,7 +25,7 @@
                 <img src="../res/static/images/logo-text.png" alt="" class="logo-text">
             </a>
         </h1>
-        <form class="layui-form blog-seach pull-left" method="post" action="../Infor/find">
+        <form class="layui-form blog-seach pull-left" method="post" action="../Infor/userInforFind">
             <div class="layui-form-item blog-sewrap">
                 <div class="layui-input-block blog-sebox">
                     <i class="layui-icon layui-icon-search"></i>
