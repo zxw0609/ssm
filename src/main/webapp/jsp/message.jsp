@@ -76,9 +76,9 @@
                 </div>
             </div>
             <form class="layui-form layui-form-pane" method="post"
-                  action="../LiuYan/saveLiuYan?InforId=${infor.id}">
+                  action="../Message/saveMessage?inforId=${infor.id}">
                 <div class="layui-form-item layui-form-text">
-                    <textarea class="layui-textarea" name="liuyan" style="resize:none" placeholder="说一下情况吧" lay-verify="required"></textarea>
+                    <textarea class="layui-textarea" name="message" style="resize:none" placeholder="说一下情况吧" lay-verify="required"></textarea>
                 </div>
                 <div class="item-btn">
                     <button class="layui-btn" lay-filter="*" lay-submit>留言</button>
@@ -86,15 +86,15 @@
             </form>
 
             <div id="LAY-msg-box">
-                <c:if test="${empty liuYanList}">
+                <c:if test="${empty messageList}">
                     <div class="info-item">
                         <div class="info-text">
                             <p class="info-intr">还没有留言快去留言吧</p>
                         </div>
                     </div>
                 </c:if>
-                <c:if test="${not empty liuYanList }">
-                    <c:forEach items="${liuYanList }" var="ly">
+                <c:if test="${not empty messageList }">
+                    <c:forEach items="${messageList }" var="ly">
                         <div class="info-item">
                             <img class="info-img" src="../uploads/${ly.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
                             <div class="info-text">
@@ -102,7 +102,7 @@
                                     <span class="name">${ly.username}</span>
                                         <%--<span class="info-img like"><i class="layui-icon layui-icon-praise"></i>5.8万</span>--%>
                                 </p>
-                                <p class="info-intr">${ly.liuyan }</p>
+                                <p class="info-intr">${ly.message }</p>
                             </div>
                         </div>
                     </c:forEach>

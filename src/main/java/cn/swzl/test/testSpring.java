@@ -1,6 +1,6 @@
 package cn.swzl.test;
 
-import cn.swzl.service.LiuYanService;
+import cn.swzl.service.MessageService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,7 +16,7 @@ public class testSpring {
         // 加载配置文件
         ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         // 获取对象
-        LiuYanService as = (LiuYanService) ac.getBean("accountService");
+        MessageService as = (MessageService) ac.getBean("accountService");
         // 调用方法
        // as.findAll();
     }

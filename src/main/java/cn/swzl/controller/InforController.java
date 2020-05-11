@@ -27,7 +27,7 @@ public class InforController {
     @Autowired
     private InforService inforService;
     /*@Autowired
-    private LiuYanService liuYanService;*/
+    private MessageService MessageService;*/
 
     @RequestMapping("/findAll")
     public String findAll(HttpSession session) {
@@ -153,12 +153,12 @@ public class InforController {
         try {
             // 说明上传文件项
             // 获取上传文件的名称
+            Infor infor1= (Infor) session.getAttribute("infor");
+            infor.setId(infor1.getId());
             if(!upload.getOriginalFilename().isEmpty()){
                 filename = upload.getOriginalFilename();
                 // 把文件的名称设置唯一值，uuid
                 String uuid = UUID.randomUUID().toString().replace("-", "");
-                Infor infor1= (Infor) session.getAttribute("infor");
-                infor.setId(infor1.getId());
                 if(!infor1.getImage().isEmpty()){
                     File file1=new File(path,infor1.getImage());
                     file1.delete();
@@ -167,7 +167,7 @@ public class InforController {
                 // 完成文件上传
                 upload.transferTo(new File(path,filename));
             }else{
-                filename="";
+                filename=infor1.getImage();
             }
             System.out.println(filename);
             infor.setImage(filename);
@@ -183,12 +183,18 @@ public class InforController {
     }
 
     @RequestMapping("/delete")
-    public String delete(HttpSession session,int id){
+    public String delete(HttpSession session,int id,HttpServletRequest request){
         if (session.getAttribute("user")==null||session.getAttribute("user")==""){
             session.setAttribute("error", "请先登录");
             return "redirect:/jsp/login.jsp";
         }
         System.out.println("controller:删除物品信息");
+        String path = request.getSession().getServletContext().getRealPath("/uploads/");
+        Infor infor = inforService.findOne(id);
+        if(!infor.getImage().isEmpty()){
+            File file1=new File(path,infor.getImage());
+            file1.delete();
+        }
         inforService.delete(id);
         /*liuYanService.delete(id);  设置了级联删除 所以不再需要*/
         session.setAttribute("error", "删除成功");

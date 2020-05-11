@@ -152,8 +152,8 @@ public class UserController {
         userService.update(user);
         inforService.updateHeadPortrait(user1.getUsername(),filename);
         session.setAttribute("error", "修改成功");
-        session.setAttribute("user",user);
-        return "redirect:/jsp/login.jsp";
+        session.setAttribute("user",userService.findOne(user1.getUsername()));
+        return "redirect:/jsp/index.jsp";
     }
 
     @RequestMapping("/updatePas")

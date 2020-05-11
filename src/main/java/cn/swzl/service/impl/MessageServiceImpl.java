@@ -1,8 +1,8 @@
 package cn.swzl.service.impl;
 
-import cn.swzl.dao.LiuYanDao;
-import cn.swzl.domain.LiuYan;
-import cn.swzl.service.LiuYanService;
+import cn.swzl.dao.MessageDao;
+import cn.swzl.domain.Message;
+import cn.swzl.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +14,24 @@ import java.util.List;
  */
 
 @Service("accountService")
-public class LiuYanServiceImpl implements LiuYanService {
+public class MessageServiceImpl implements MessageService {
 
     @Autowired //注入
-    private LiuYanDao liuYanDao;
+    private MessageDao messageDao;
 
-    public List<LiuYan> find(int InforId) {
+    public List<Message> find(int inforId) {
         System.out.println("业务层:查询物品留言");
-        return liuYanDao.find(InforId);
+        return messageDao.find(inforId);
     }
 
 
-    public void saveLiuYan(LiuYan liuYan) {
+    public void saveMessage(Message message) {
         System.out.println("业务层：保存留言信息");
-        liuYanDao.saveLiuYan(liuYan);
+        messageDao.saveMessage(message);
     }
 
-    /*public void delete(int InforId) {
+    /*public void delete(int inforId) {
         System.out.println("业务层：删除物品对应的留言信息");
-        liuYanDao.delete(InforId);
+        MessageDao.delete(inforId);
     }*/
 }

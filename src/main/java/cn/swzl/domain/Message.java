@@ -6,11 +6,11 @@ import java.io.Serializable;
  * @author zhangxw
  * @date 20/2/17 - 11:54
  */
-public class LiuYan implements Serializable {
+public class Message implements Serializable {
     private String username;
-    private String liuyan;
+    private String message;
     private int id;
-    private int InforId;
+    private int inforId;
     private String headPortrait;
 
     public String getUsername() {
@@ -21,12 +21,12 @@ public class LiuYan implements Serializable {
         this.username = username;
     }
 
-    public String getLiuyan() {
-        return liuyan;
+    public String getMessage() {
+        return message;
     }
 
-    public void setLiuyan(String liuyan) {
-        this.liuyan = liuyan;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public int getId() {
@@ -38,11 +38,11 @@ public class LiuYan implements Serializable {
     }
 
     public int getInforId() {
-        return InforId;
+        return inforId;
     }
 
     public void setInforId(int inforId) {
-        InforId = inforId;
+        this.inforId = inforId;
     }
 
     public String getHeadPortrait() {
@@ -55,11 +55,11 @@ public class LiuYan implements Serializable {
 
     @Override
     public String toString() {
-        return "LiuYan{" +
+        return "Message{" +
                 "username='" + username + '\'' +
-                ", liuyan='" + liuyan + '\'' +
+                ", message='" + message + '\'' +
                 ", id=" + id +
-                ", InforId=" + InforId +
+                ", inforId=" + inforId +
                 ", headPortrait='" + headPortrait + '\'' +
                 '}';
     }

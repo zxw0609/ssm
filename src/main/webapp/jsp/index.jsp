@@ -82,7 +82,7 @@
                             </c:if>
                         </div>
                         <div class="comment count" >
-                            <a href="../LiuYan/find?InforId=${Infor.id}" style="width: 100%;">留言</a>
+                            <a href="../Message/find?inforId=${Infor.id}" style="width: 100%;">留言</a>
                         </div>
                     </div>
                 </c:forEach>
