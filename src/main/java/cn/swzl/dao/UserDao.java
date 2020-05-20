@@ -27,6 +27,8 @@ public interface UserDao {
     //查询单个用户
     @Select("select * from users where username = #{username}")
     public User findOne(String username);
+    @Select("select * from users where id = #{id}")
+    public User findOneId(int userId);
 
     //修改用户信息
     @Update("update users set stu=#{stu},name=#{name},grade=#{grade},magor=#{magor},department=#{department},headPortrait=#{headPortrait} where username=#{username}")

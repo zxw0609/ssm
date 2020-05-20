@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @date 20/2/20 - 19:55
  */
 public class User implements Serializable {
+    private int id;
     //用户名
     private String username;
     //密码
@@ -23,6 +24,14 @@ public class User implements Serializable {
     private String department;
     //头像
     private String headPortrait;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -91,7 +100,8 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", stu='" + stu + '\'' +
                 ", name='" + name + '\'' +

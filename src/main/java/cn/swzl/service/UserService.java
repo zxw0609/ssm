@@ -16,6 +16,7 @@ public interface UserService {
     public void saveUser(User user);
     //查询单个用户用于登录验证;
     public User findOne(String username);
+    public User findOneId(int userId);
     //修改用户信息
     public void update(User user);
     //修改用户密码

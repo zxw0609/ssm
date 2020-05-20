@@ -17,7 +17,7 @@ public interface InforDao {
      * 保存物品信息
      * @param infor
      */
-    @Insert("insert into infors (username,tname,infor,tape,locar,genre,stape,headPortrait,image) values (#{username},#{tname},#{infor},#{tape},#{locar},#{genre},#{stape},#{headPortrait},#{image})")
+    @Insert("insert into infors (userId,tname,infor,tape,locar,genre,stape,image) values (#{userId},#{tname},#{infor},#{tape},#{locar},#{genre},#{stape},#{image})")
     public void saveInfor(Infor infor);
 
     /**
@@ -40,8 +40,8 @@ public interface InforDao {
      * @return
      */
 
-    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi} and username=#{username} order by stape desc")
-    public List<Infor> userInforFind(@Param("xinxi") String xinxi, @Param("username") String username);
+    @Select("select * from infors where tname like #{xinxi} or infor like #{xinxi} or locar like #{xinxi} or genre like #{xinxi} and userId=#{userId} order by stape desc")
+    public List<Infor> userInforFind(@Param("xinxi") String xinxi, @Param("userId") int userId);
 
     /**
      * 查询单个信息
@@ -53,11 +53,11 @@ public interface InforDao {
 
     /**
      * 查询用户所有物品信息
-     * @param username
+     * @param userId
      * @return
      */
-    @Select("select * from infors where username = #{username} order by stape desc")
-    public List<Infor> userFind(String username);
+    @Select("select * from infors where userId = #{userId} order by stape desc")
+    public List<Infor> userFind(int userId);
 
     /**
      * 更新物品信息
@@ -76,7 +76,7 @@ public interface InforDao {
     /**
      * 用户更改头像时更改所有物品信息中对应的用户头像
      * @param username
-     */
+     *//*
     @Update("update infors set headPortrait=#{headPortrait} where username=#{username}")
-    public void updateHeadPortrait(@Param("username") String username, @Param("headPortrait") String headPortrait);
+    public void updateHeadPortrait(@Param("username") String username, @Param("headPortrait") String headPortrait);*/
 }

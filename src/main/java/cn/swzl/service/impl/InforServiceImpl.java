@@ -34,9 +34,9 @@ public class InforServiceImpl implements InforService {
         return inforDao.find("%"+xinxi+"%");
     }
 
-    public List<Infor> userInforFind(String xinxi,String username) {
+    public List<Infor> userInforFind(String xinxi,int userId) {
         System.out.println("service:模糊查询用户相关物品信息");
-        return inforDao.userInforFind("%"+xinxi+"%",username);
+        return inforDao.userInforFind("%"+xinxi+"%",userId);
     }
 
     public Infor findOne(int id) {
@@ -44,9 +44,9 @@ public class InforServiceImpl implements InforService {
         return inforDao.findOne(id);
     }
 
-    public List<Infor> userFind(String username) {
+    public List<Infor> userFind(int userId) {
         System.out.println("service:查询指定用户名的物品信息");
-        return inforDao.userFind(username);
+        return inforDao.userFind(userId);
     }
 
     public void update(Infor infor) {
@@ -59,8 +59,8 @@ public class InforServiceImpl implements InforService {
         inforDao.delete(id);
     }
 
-    public void updateHeadPortrait(String username,String headPortrait){
+    /*public void updateHeadPortrait(String username,String headPortrait){
         System.out.println("service:更新用户所有物品信息的头像");
         inforDao.updateHeadPortrait(username,headPortrait);
-    }
+    }*/
 }

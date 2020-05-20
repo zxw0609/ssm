@@ -70,11 +70,11 @@
                 <h3 align="center">什么都没找到唉~</h3>
             </c:if>
             <c:if test="${not empty inforList}">
-                <c:forEach items="${inforList}" var="Infor">
+                <c:forEach items="${inforList}" var="Infor" varStatus="loop">
                     <div class="item">
                         <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                            <img class="info-img" src="../uploads/${Infor.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
-                            <h3><a href="">${Infor.username }</a></h3>
+                            <img class="info-img" src="../uploads/${userList[loop.count-1].headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
+                            <h3><a href="">${userList[loop.count-1].username }</a></h3>
                             <h5>发布于：<span>${Infor.stape }</span></h5>
                             <p>物品名：${Infor.tname}<br>时间：${Infor.tape}<br>地点：${Infor.locar}<br>类型：${Infor.genre}<br>物品描述： ${Infor.infor }</p>
                             <c:if test="${not empty Infor.image}">

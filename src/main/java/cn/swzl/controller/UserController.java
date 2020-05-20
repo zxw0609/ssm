@@ -1,7 +1,6 @@
 package cn.swzl.controller;
 
 import cn.swzl.domain.User;
-import cn.swzl.service.InforService;
 import cn.swzl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +23,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private InforService inforService;
 
     @RequestMapping("/save")
     public String saveUser(User user ,String repassword, HttpSession session,HttpServletRequest request, MultipartFile upload){
@@ -150,7 +147,6 @@ public class UserController {
         user.setHeadPortrait(filename);
         user.setUsername(user1.getUsername());
         userService.update(user);
-        inforService.updateHeadPortrait(user1.getUsername(),filename);
         session.setAttribute("error", "修改成功");
         session.setAttribute("user",userService.findOne(user1.getUsername()));
         return "redirect:/jsp/index.jsp";

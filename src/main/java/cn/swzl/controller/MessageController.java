@@ -5,11 +5,13 @@ import cn.swzl.domain.Message;
 import cn.swzl.domain.User;
 import cn.swzl.service.InforService;
 import cn.swzl.service.MessageService;
+import cn.swzl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +26,8 @@ public class MessageController {
     private MessageService messageService;
     @Autowired //该注解为自动类型注入
     private InforService inforService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/find")
     public String findAll(int inforId, HttpSession session){
@@ -35,7 +39,14 @@ public class MessageController {
         //调用service的方法
         List<Message> messageList = messageService.find(inforId);
         Infor infor = inforService.findOne(inforId);
+        List<User> userList = new ArrayList<>();
+        for (Message message:messageList) {
+            userList.add(userService.findOneId(message.getUserId()));
+        }
+        User user = userService.findOneId(infor.getUserId());
+        session.setAttribute("userList", userList);
         session.setAttribute("infor", infor);
+        session.setAttribute("user", user);
         session.setAttribute("messageList", messageList);
         return "redirect:/jsp/message.jsp";
     }
@@ -44,9 +55,8 @@ public class MessageController {
     public String saveMessage (int inforId, Message message, HttpSession session ){
         System.out.println("表现层:保存留言信息...");
         User user = (User) session.getAttribute("user");
-        message.setUsername(user.getUsername());
+        message.setUserId(user.getId());
         message.setInforId(inforId);
-        message.setHeadPortrait(user.getHeadPortrait());
         messageService.saveMessage(message);
         return "forward:/Message/find?inforId="+inforId;
     }

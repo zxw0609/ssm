@@ -60,8 +60,8 @@
         <div class="contar-wrap">
             <div class="item">
                 <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                    <img class="info-img" src="../uploads/${infor.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
-                    <h3><a href="details.html">${infor.username }</a></h3>
+                    <img class="info-img" src="../uploads/${user.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
+                    <h3><a href="details.html">${user.username }</a></h3>
                     <h5>发布于：<span>${infor.stape }</span></h5>
                     <p>
                         物品名：${infor.tname}<br>时间：${infor.tape}<br>地点：${infor.locar}<br>类型：${infor.genre}<br>物品描述： ${infor.infor }
@@ -94,12 +94,12 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty messageList }">
-                    <c:forEach items="${messageList }" var="ly">
+                    <c:forEach items="${messageList }" var="ly" varStatus="loop">
                         <div class="info-item">
-                            <img class="info-img" src="../uploads/${ly.headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
+                            <img class="info-img" src="../uploads/${userList[loop.count-1].headPortrait}" alt="" style="width:auto;heigth:auto; max-width:48px; max-height:48px;margin-top: 10px;">
                             <div class="info-text">
                                 <p class="title count">
-                                    <span class="name">${ly.username}</span>
+                                    <span class="name">${userList[loop.count-1].username}</span>
                                         <%--<span class="info-img like"><i class="layui-icon layui-icon-praise"></i>5.8万</span>--%>
                                 </p>
                                 <p class="info-intr">${ly.message }</p>

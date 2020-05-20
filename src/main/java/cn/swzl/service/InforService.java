@@ -20,13 +20,13 @@ public interface InforService {
     public List<Infor> find(String xinxi);
 
     //用户发布物品模糊查询
-    public List<Infor> userInforFind(String xinxi,String username);
+    public List<Infor> userInforFind(String xinxi,int userId);
 
     //根据id查询指定物品信息
     public Infor findOne(int id);
 
     //根据用户名查询所有物品信息
-    public List<Infor> userFind(String username);
+    public List<Infor> userFind(int userId);
 
     //更新用户信息
     public void update(Infor infor);
@@ -35,5 +35,5 @@ public interface InforService {
     public void delete(int id);
 
     //更新用户头像
-    public void updateHeadPortrait(String username,String headPortrait);
+    /*public void updateHeadPortrait(String username,String headPortrait);*/
 }

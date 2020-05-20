@@ -36,6 +36,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findOne(username);
     }
 
+    public User findOneId(int userId) {
+        System.out.println("service:查询单个用户");
+        return userDao.findOneId(userId);
+    }
+
     public void update(User user) {
         System.out.println("service:修改用户信息");
         userDao.updateUser(user);

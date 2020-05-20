@@ -18,7 +18,7 @@ public interface MessageDao {
     public List<Message> find(int inforId);
 
     //保存留言信息
-    @Insert(value = "insert into message (inforId,username,message,headPortrait) value (#{inforId},#{username},#{message},#{headPortrait})")
+    @Insert(value = "insert into message (inforId,userId,message) value (#{inforId},#{userId},#{message})")
     public void saveMessage(Message message);
 
     //删除留言信息

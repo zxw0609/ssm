@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Infor implements Serializable {
 
     private int id;
-    private String username;
+    private int userId;
     private String tname;
     private String infor;
     private String tape;
@@ -17,7 +17,6 @@ public class Infor implements Serializable {
     private String genre;
     private String stape;
     private String image;
-    private String headPortrait;
 
     public int getId() {
         return id;
@@ -27,12 +26,12 @@ public class Infor implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTname() {
@@ -91,19 +90,11 @@ public class Infor implements Serializable {
         this.image = image;
     }
 
-    public String getHeadPortrait() {
-        return headPortrait;
-    }
-
-    public void setHeadPortrait(String headPortrait) {
-        this.headPortrait = headPortrait;
-    }
-
     @Override
     public String toString() {
         return "Infor{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", userId=" + userId +
                 ", tname='" + tname + '\'' +
                 ", infor='" + infor + '\'' +
                 ", tape='" + tape + '\'' +
@@ -111,7 +102,6 @@ public class Infor implements Serializable {
                 ", genre='" + genre + '\'' +
                 ", stape='" + stape + '\'' +
                 ", image='" + image + '\'' +
-                ", headPortrait='" + headPortrait + '\'' +
                 '}';
     }
 }

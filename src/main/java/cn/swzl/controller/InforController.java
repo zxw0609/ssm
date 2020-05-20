@@ -3,6 +3,7 @@ package cn.swzl.controller;
 import cn.swzl.domain.Infor;
 import cn.swzl.domain.User;
 import cn.swzl.service.InforService;
+import cn.swzl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +28,8 @@ import java.util.UUID;
 public class InforController {
     @Autowired
     private InforService inforService;
+    @Autowired
+    private UserService userService;
     /*@Autowired
     private MessageService MessageService;*/
 
@@ -33,6 +37,11 @@ public class InforController {
     public String findAll(HttpSession session) {
         System.out.println("controller:查询所有物品信息");
         List<Infor> inforList = inforService.findAll();
+        List<User> userList = new ArrayList<>();
+        for (Infor infor:inforList) {
+            userList.add(userService.findOneId(infor.getUserId()));
+        }
+        session.setAttribute("userList", userList);
         session.setAttribute("inforList", inforList);
         session.setAttribute("act1", "1");
         return "redirect:/jsp/index.jsp";
@@ -50,9 +59,7 @@ public class InforController {
         String stape=df2.format(date);
         infor.setStape(stape);
         User user = (User) session.getAttribute("user");
-        infor.setUsername(user.getUsername());
-        infor.setHeadPortrait(user.getHeadPortrait());
-
+        infor.setUserId(user.getId());
         // 使用fileupload组件完成文件上传
         // 上传的位置
         String path = request.getSession().getServletContext().getRealPath("/uploads/");
@@ -90,6 +97,11 @@ public class InforController {
     public String find(String xinxi , HttpSession session){
         System.out.println("controller:模糊查询物品信息");
         List<Infor> inforList =inforService.find(xinxi);
+        List<User> userList = new ArrayList<>();
+        for (Infor infor:inforList) {
+            userList.add(userService.findOneId(infor.getUserId()));
+        }
+        session.setAttribute("userList", userList);
         session.setAttribute("inforList", inforList);
         session.setAttribute("act1", "1");
         return "redirect:/jsp/index.jsp";
@@ -103,7 +115,12 @@ public class InforController {
         }
         System.out.println("controller:模糊查询用户物品信息");
         User user = (User) session.getAttribute("user");
-        List<Infor> inforList =inforService.userInforFind(xinxi,user.getUsername());
+        List<Infor> inforList =inforService.userInforFind(xinxi,user.getId());
+        List<User> userList = new ArrayList<>();
+        for (Infor infor:inforList) {
+            userList.add(userService.findOneId(infor.getUserId()));
+        }
+        session.setAttribute("userList", userList);
         session.setAttribute("userInforList",inforList);
         return "redirect:/jsp/userInfor.jsp";
     }
@@ -128,7 +145,12 @@ public class InforController {
         }
         User user = (User) session.getAttribute("user");
         System.out.println("controller:查询指定用户的物品信息");
-        List<Infor>userInforList = inforService.userFind(user.getUsername());
+        List<Infor>userInforList = inforService.userFind(user.getId());
+        List<User> userList = new ArrayList<>();
+        for (Infor infor:userInforList) {
+            userList.add(userService.findOneId(infor.getUserId()));
+        }
+        session.setAttribute("userList", userList);
         session.setAttribute("userInforList",userInforList);
         return "redirect:/jsp/userInfor.jsp";
     }

@@ -7,19 +7,10 @@ import java.io.Serializable;
  * @date 20/2/17 - 11:54
  */
 public class Message implements Serializable {
-    private String username;
     private String message;
     private int id;
     private int inforId;
-    private String headPortrait;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private int userId;
 
     public String getMessage() {
         return message;
@@ -45,22 +36,21 @@ public class Message implements Serializable {
         this.inforId = inforId;
     }
 
-    public String getHeadPortrait() {
-        return headPortrait;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setHeadPortrait(String headPortrait) {
-        this.headPortrait = headPortrait;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "username='" + username + '\'' +
-                ", message='" + message + '\'' +
+                "message='" + message + '\'' +
                 ", id=" + id +
                 ", inforId=" + inforId +
-                ", headPortrait='" + headPortrait + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }
